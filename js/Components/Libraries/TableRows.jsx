@@ -5,7 +5,7 @@ class TableRows extends React.Component {
     render() {
         return <tr>
             <td>
-                <img  className='mini-photo' src={this.props.photo} alt="photo" />
+                <img className='mini-photo' src={this.props.photo} alt="photo" />
             </td>
             <td>
                 <span className="name">
@@ -21,7 +21,7 @@ class TableRows extends React.Component {
                     {this.props.amount}
                 </span>
                 <p className="description">
-                    {this.props.description.substr(0, 30) + '...'}
+                    {this.props.description.substr(0, 60) + '...'}
                 </p>
                 <Link to={"/product/" + this.props.id} className="btn btn-info show-product-button">
                     Show
