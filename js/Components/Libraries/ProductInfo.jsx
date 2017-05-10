@@ -17,7 +17,7 @@ class ProductInfo extends React.Component {
                 {
                     this.props.available ? <AddToCartForm
                     btnHandleClick={this.props.btnHandleClick}
-                    qntHandleChange={this.props.handleQuantityChange}
+                    qntHandleChange={this.props.qntHandleChange}
                     quantity={this.props.quantity} /> : <span className='unavailable'>Product unavailable</span>
 
                 }

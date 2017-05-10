@@ -12788,6 +12788,10 @@ var _Product = __webpack_require__(119);
 
 var _Product2 = _interopRequireDefault(_Product);
 
+var _Cart = __webpack_require__(262);
+
+var _Cart2 = _interopRequireDefault(_Cart);
+
 var _reactRouter = __webpack_require__(67);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -12803,7 +12807,8 @@ document.addEventListener('DOMContentLoaded', function () {
             { path: '/', component: _Template2.default },
             _react2.default.createElement(_reactRouter.IndexRoute, { component: _Main2.default }),
             _react2.default.createElement(_reactRouter.Route, { path: '/products', component: _Products2.default }),
-            _react2.default.createElement(_reactRouter.Route, { path: '/product/:id', component: _Product2.default })
+            _react2.default.createElement(_reactRouter.Route, { path: '/product/:id', component: _Product2.default }),
+            _react2.default.createElement(_reactRouter.Route, { path: '/cart/:id', component: _Cart2.default })
         )
     ), document.getElementById('app'));
 });
@@ -13568,11 +13573,14 @@ var Product = function (_React$Component) {
         };
 
         _this.handleAddToCartButtonClick = function () {
+            var product = _this.state.products;
+            product.id = _this.state.product.id;
+
             fetch(_config2.default.apiUrl + '/addToCart', {
                 method: 'POST',
                 body: JSON.stringify({
                     cartId: localStorage.getItem('cart'),
-                    products: _this.state.products
+                    products: product
                 })
             }).then(function () {
                 _this.setState({
@@ -13831,7 +13839,7 @@ var Template = function (_React$Component) {
                             _react2.default.createElement(
                                 _reactRouter.IndexLink,
                                 { className: 'navbar-brand', to: '/' },
-                                'Shop'
+                                'Elegant Shop'
                             )
                         ),
                         _react2.default.createElement(
@@ -13921,7 +13929,7 @@ exports = module.exports = __webpack_require__(123)(undefined);
 
 
 // module
-exports.push([module.i, ".mini-photo {\n  width: 100px;\n  height: 100px; }\n\n.price {\n  color: grey;\n  margin-left: 5px; }\n\n.name {\n  font-weight: 800; }\n\n.available {\n  color: green; }\n\n.unavailable {\n  color: red; }\n\n@media (min-width: 961px) {\n  .name {\n    font-size: 24px; }\n  .show-product-button {\n    float: right;\n    margin: -4% 0 0 0; } }\n\n@media (min-width: 1024px) {\n  .price {\n    margin-left: 10px; } }\n\n.product-images li {\n  list-style: none;\n  display: inline-block;\n  margin-left: 15px; }\n  .product-images li img {\n    width: 100px;\n    height: 100px; }\n\n.main-product-photo {\n  width: 400px;\n  height: 400px; }\n\n.product-info {\n  float: right; }\n  .product-info hr {\n    border: 2px solid black; }\n  .product-info .title h2, .product-info .title span {\n    display: inline-block; }\n  .product-info .title span {\n    color: grey;\n    margin-left: 10px; }\n  .product-info .add-to-cart input {\n    width: 50px; }\n  .product-info .add-to-cart button {\n    margin-top: 20px; }\n", ""]);
+exports.push([module.i, ".mini-photo {\n  width: 100px;\n  height: 100px; }\n\n.price {\n  color: grey;\n  margin-left: 5px; }\n\n.name {\n  font-weight: 800; }\n\n.available {\n  color: green; }\n\n.unavailable {\n  color: red; }\n\n@media (min-width: 961px) {\n  .name {\n    font-size: 24px; }\n  .show-product-button {\n    float: right;\n    margin: -4% 0 0 0; } }\n\n@media (min-width: 1024px) {\n  .price {\n    margin-left: 10px; } }\n\n.product-images li {\n  list-style: none;\n  display: inline-block;\n  margin-left: 15px; }\n  .product-images li img {\n    width: 100px;\n    height: 100px; }\n\n.main-product-photo {\n  width: 400px;\n  height: 400px; }\n\n.product-info {\n  float: right; }\n  .product-info hr {\n    border: 2px solid black; }\n  .product-info .title h2, .product-info .title span {\n    display: inline-block; }\n  .product-info .title span {\n    color: grey;\n    margin-left: 10px; }\n  .product-info .add-to-cart input {\n    width: 50px; }\n  .product-info .add-to-cart button {\n    margin-top: 20px; }\n\n.totalSum {\n  font-weight: 700;\n  font-size: 24px; }\n\n@media (min-width: 961px) {\n  .quantity {\n    float: right; }\n  .productSum {\n    float: right;\n    padding-top: 60px; }\n  .totalSum {\n    float: right; }\n  .delete-product-button {\n    float: right;\n    margin: -4% 0 0 0; } }\n", ""]);
 
 // exports
 
@@ -29495,7 +29503,7 @@ var ProductInfo = function (_React$Component) {
                     { className: 'add-to-cart' },
                     this.props.available ? _react2.default.createElement(_AddToCartForm2.default, {
                         btnHandleClick: this.props.btnHandleClick,
-                        qntHandleChange: this.props.handleQuantityChange,
+                        qntHandleChange: this.props.qntHandleChange,
                         quantity: this.props.quantity }) : _react2.default.createElement(
                         'span',
                         { className: 'unavailable' },
@@ -29571,6 +29579,230 @@ var AddToCartForm = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = AddToCartForm;
+
+/***/ }),
+/* 262 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _config = __webpack_require__(70);
+
+var _config2 = _interopRequireDefault(_config);
+
+var _CartTableRows = __webpack_require__(263);
+
+var _CartTableRows2 = _interopRequireDefault(_CartTableRows);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Cart = function (_React$Component) {
+    _inherits(Cart, _React$Component);
+
+    function Cart() {
+        _classCallCheck(this, Cart);
+
+        var _this = _possibleConstructorReturn(this, (Cart.__proto__ || Object.getPrototypeOf(Cart)).call(this));
+
+        _this.countAllElements = function () {
+            var sum = 0;
+            _this.state.products.forEach(function (element) {
+                sum += parseInt(element.price);
+            });
+            return sum;
+        };
+
+        _this.handleDeleteClick = function (event) {
+            fetch(_config2.default.apiUrl + '/cart/delete/' + event.target.dataset.id).then(function (response) {
+                return response.json();
+            }).then(function (responseJson) {
+                _this.setState({
+                    products: responseJson.items
+                });
+            });
+        };
+
+        _this.state = {
+            products: []
+        };
+        return _this;
+    }
+
+    _createClass(Cart, [{
+        key: 'componentWillMount',
+        value: function componentWillMount() {
+            var _this2 = this;
+
+            fetch(_config2.default.apiUrl + '/getCart/' + localStorage.getItem('cart')).then(function (response) {
+                return response.json();
+            }).then(function (responseJson) {
+                _this2.setState({
+                    products: responseJson.items
+                });
+            });
+        }
+    }, {
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            this.hasData = false;
+            if (this.state.products !== []) {
+                this.hasData = true;
+            }
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this3 = this;
+
+            return _react2.default.createElement(
+                'div',
+                { className: 'row' },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'col-md-12 col-sm-12' },
+                    _react2.default.createElement(
+                        'table',
+                        { className: 'table table-bordered table-hovered' },
+                        _react2.default.createElement(
+                            'tbody',
+                            null,
+                            this.hasData ? this.state.products.map(function (element) {
+                                return _react2.default.createElement(_CartTableRows2.default, {
+                                    key: element.id,
+                                    id: element.id,
+                                    name: element.product.name,
+                                    price: element.product.price,
+                                    quantity: element.quantity,
+                                    productSum: element.quantity * element.product.price,
+                                    photo: element.product.product_images[0].url,
+                                    deleteButton: _this3.handleDeleteClick });
+                            }) : null
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'totalSum' },
+                        'Total: ',
+                        this.countAllElements(),
+                        ' PLN'
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Cart;
+}(_react2.default.Component);
+
+exports.default = Cart;
+
+/***/ }),
+/* 263 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = __webpack_require__(67);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var CartTableRows = function (_React$Component) {
+    _inherits(CartTableRows, _React$Component);
+
+    function CartTableRows() {
+        _classCallCheck(this, CartTableRows);
+
+        return _possibleConstructorReturn(this, (CartTableRows.__proto__ || Object.getPrototypeOf(CartTableRows)).apply(this, arguments));
+    }
+
+    _createClass(CartTableRows, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'tr',
+                null,
+                _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement('img', { className: 'mini-photo', src: this.props.photo, alt: 'photo' })
+                ),
+                _react2.default.createElement(
+                    'td',
+                    { className: 'cartView' },
+                    _react2.default.createElement(
+                        'span',
+                        { className: 'name' },
+                        this.props.name
+                    ),
+                    _react2.default.createElement(
+                        'span',
+                        { className: 'price' },
+                        '(',
+                        this.props.price,
+                        ' PLN)'
+                    ),
+                    _react2.default.createElement(
+                        'span',
+                        { className: 'quantity' },
+                        'Quantity: ',
+                        this.props.quantity
+                    ),
+                    _react2.default.createElement('br', null),
+                    _react2.default.createElement(
+                        'span',
+                        { className: 'productSum' },
+                        'Sum: ',
+                        this.props.productSum,
+                        ' PLN'
+                    ),
+                    _react2.default.createElement(
+                        'button',
+                        { onClick: this.props.deleteButton, 'data-id': this.props.id, className: 'btn btn btn-danger delete-product-button' },
+                        'Delete'
+                    )
+                )
+            );
+        }
+    }]);
+
+    return CartTableRows;
+}(_react2.default.Component);
+
+exports.default = CartTableRows;
 
 /***/ })
 /******/ ]);

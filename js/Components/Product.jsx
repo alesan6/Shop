@@ -22,12 +22,15 @@ class Product extends React.Component {
     }
 
 //czyszczenie products w state na koncu, zeby nie dodawalo ponownie tego samego.
-    handleAddToCartButtonClick =()=> {
+    handleAddToCartButtonClick = () => {
+        let product = this.state.products
+        product.id = this.state.product.id
+
         fetch(config.apiUrl + '/addToCart', {
             method: 'POST',
             body: JSON.stringify({
                 cartId: localStorage.getItem('cart'),
-                products: this.state.products
+                products: product
             })
         })
         .then(() => {

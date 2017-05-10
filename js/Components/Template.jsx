@@ -27,7 +27,7 @@ class Template extends React.Component {
                         <span className="icon-bar"></span>
                         <span className="icon-bar"></span>
                       </button>
-                      <IndexLink className="navbar-brand" to="/">Shop</IndexLink>
+                      <IndexLink className="navbar-brand" to="/">Elegant Shop</IndexLink>
                     </div>
 
 
