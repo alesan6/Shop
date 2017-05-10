@@ -12,7 +12,7 @@ class TableRows extends React.Component {
                     {this.props.name}
                 </span>
                 <span className="price">
-                    ({this.props.price} zł)
+                    ({this.props.price} PLN)
                 </span>
                 <span className="available">
                     {this.props.available ? <span className="available"> Dostępny</span> : <span className="unavailable"> Niedostępny </span>}

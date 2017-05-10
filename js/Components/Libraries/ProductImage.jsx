@@ -2,7 +2,7 @@ import React from 'react'
 
 class ProductImage extends React.Component {
     render() {
-        return <img src={this.props.url} />
+        return <img className="main-product-photo" src={this.props.url} />
     }
 }
 
