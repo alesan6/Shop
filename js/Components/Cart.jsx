@@ -37,6 +37,7 @@ class Cart extends React.Component {
     }
 
     handleDeleteClick = event => {
+        if (confirm("Do you really want to hurt me?")) {
         fetch(config.apiUrl + '/cart/delete/' + event.target.dataset.id)
         .then(response => response.json())
         .then(responseJson => {
@@ -44,6 +45,7 @@ class Cart extends React.Component {
                 products: responseJson.items
             })
         })
+    }
     }
 
     render() {

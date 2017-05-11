@@ -11,7 +11,8 @@ class Product extends React.Component {
         this.state = {
             product: {},
             id: this.props.params.id,
-            products: {}
+            products: {},
+            success: false
         }
     }
 
@@ -35,7 +36,15 @@ class Product extends React.Component {
         })
         .then(() => {
             this.setState({
-                products: {}
+                products: {},
+                success: true
+            }, () => {
+                let st = setTimeout(() => {
+                    this.setState({
+                        success: false
+                    })
+                    clearTimeout(st)
+                }, 3000)
             })
         })
 
@@ -78,6 +87,9 @@ class Product extends React.Component {
                                                     available={this.state.product.available}
                                                     btnHandleClick={this.handleAddToCartButtonClick}
                                                     qntHandleChange={this.handleQuantityChange} /> : null
+                    }
+                    {
+                        this.state.success ? <span className="alert alert-success">This product was added to your cart</span> : null
                     }
                 </div>
             </div>
