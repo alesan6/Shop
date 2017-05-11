@@ -6,9 +6,6 @@
     font-size: 24px;
 }
 
-.delete-product-button {
-
-}
 
 @media (min-width: 961px) {
     .quantity {
@@ -20,10 +17,15 @@
     }
     .totalSum {
         float: right;
+        height: 40px;
     }
     .delete-product-button {
         float: right;
         margin: -4% 0 0 0;
-    
+
+    }
+    .order-btn {
+        float: right;
+        margin-top: 20px;
     }
 }

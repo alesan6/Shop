@@ -1,23 +1,28 @@
 import React from 'react'
 import config from '../config.js'
 import CartTableRows from './Libraries/CartTableRows.jsx'
+import { hashHistory } from 'react-router'
 
 
 class Cart extends React.Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             products: []
         }
     }
 
     componentWillMount() {
+        this.hasData = false
         fetch(config.apiUrl + '/getCart/' + localStorage.getItem('cart'))
         .then(response => response.json())
         .then(responseJson => {
+            if(responseJson.items.length > 0) {
             this.setState({
                 products: responseJson.items
             })
+            this.hasData = true;
+        }
         })
     }
 
@@ -41,11 +46,19 @@ class Cart extends React.Component {
         fetch(config.apiUrl + '/cart/delete/' + event.target.dataset.id)
         .then(response => response.json())
         .then(responseJson => {
+            if(responseJson.items.length === 0) {
+                this.hasData = false
+            }
             this.setState({
                 products: responseJson.items
             })
         })
     }
+    }
+
+    handleOrderClick = () => {
+
+        hashHistory.push('/cart/' + this.props.params.id + '/form')
     }
 
     render() {
@@ -64,13 +77,19 @@ class Cart extends React.Component {
                                         productSum={element.quantity * element.product.price}
                                         photo={element.product.product_images[0].url}
                                         deleteButton={this.handleDeleteClick} />
-                            }) : null
+                            }) : <tr><td><h2 className='text-center'>Your cart is empty</h2></td></tr>
                         }
                     </tbody>
                 </table>
                 <div className="totalSum">
                     Total: {this.countAllElements()} PLN
-                </div>
+                </div><br/>
+                    {
+                        this.state.products.length > 0 ? <button type="button" className="btn btn-success order-btn" onClick={this.handleOrderClick}>
+                            Move to Order
+                        </button> : null
+                    }
+
             </div>
 
         </div>

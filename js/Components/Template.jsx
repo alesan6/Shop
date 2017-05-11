@@ -5,6 +5,7 @@ import {Link, IndexLink} from 'react-router'
 class Template extends React.Component {
 //jesli nie mam w localtorage koszyka to go tworze. localStorage obiektem, getItem funkcja
     componentDidMount() {
+        
         if (!localStorage.getItem('cart')) {
             fetch(config.apiUrl + '/createCart')
             .then(response => response.json())
