@@ -12804,6 +12804,10 @@ var _CartForm = __webpack_require__(117);
 
 var _CartForm2 = _interopRequireDefault(_CartForm);
 
+var _Contact = __webpack_require__(268);
+
+var _Contact2 = _interopRequireDefault(_Contact);
+
 var _reactRouter = __webpack_require__(29);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -12823,7 +12827,8 @@ document.addEventListener('DOMContentLoaded', function () {
             _react2.default.createElement(_reactRouter.Route, { path: '/cart/:id', component: _Cart2.default }),
             _react2.default.createElement(_reactRouter.Route, { path: '/orders', component: _Orders2.default }),
             _react2.default.createElement(_reactRouter.Route, { path: '/order/:id', component: _Order2.default }),
-            _react2.default.createElement(_reactRouter.Route, { path: '/cart/:id/form', component: _CartForm2.default })
+            _react2.default.createElement(_reactRouter.Route, { path: '/cart/:id/form', component: _CartForm2.default }),
+            _react2.default.createElement(_reactRouter.Route, { path: '/contact', component: _Contact2.default })
         )
     ), document.getElementById('app'));
 });
@@ -14247,7 +14252,7 @@ var Main = function (_React$Component) {
                     null,
                     _react2.default.createElement(
                         "h3",
-                        { className: "hidden-xs-block text-center" },
+                        { className: "hidden-xs-block text-center contact-elements" },
                         "Shopping for ordinary men. ",
                         _react2.default.createElement(
                             "span",
@@ -14903,7 +14908,7 @@ exports = module.exports = __webpack_require__(131)(undefined);
 
 
 // module
-exports.push([module.i, ".mini-photo {\n  width: 100px;\n  height: 100px; }\n\n.price {\n  color: grey;\n  margin-left: 5px; }\n\n.name {\n  font-weight: 800; }\n\n.available {\n  color: green; }\n\n.unavailable {\n  color: red; }\n\n@media (min-width: 961px) {\n  .name {\n    font-size: 24px; }\n  .show-product-button {\n    float: right;\n    margin: -4% 0 0 0; } }\n\n@media (min-width: 1024px) {\n  .price {\n    margin-left: 10px; } }\n\n.product-images li {\n  list-style: none;\n  display: inline-block;\n  margin-left: 15px; }\n  .product-images li img {\n    width: 100px;\n    height: 100px; }\n\n.main-product-photo {\n  width: 400px;\n  height: 400px; }\n\n.product-info {\n  float: right; }\n  .product-info hr {\n    border: 2px solid black; }\n  .product-info .title h2, .product-info .title span {\n    display: inline-block; }\n  .product-info .title span {\n    color: grey;\n    margin-left: 10px; }\n  .product-info .add-to-cart input {\n    width: 50px; }\n  .product-info .add-to-cart button {\n    margin-top: 20px;\n    margin-bottom: 20px; }\n\n.totalSum {\n  font-weight: 700;\n  font-size: 24px; }\n\n@media (min-width: 961px) {\n  .quantity {\n    float: right; }\n  .productSum {\n    float: right;\n    padding-top: 60px; }\n  .totalSum {\n    float: right;\n    height: 40px; }\n  .delete-product-button {\n    float: right;\n    margin: -4% 0 0 0; }\n  .order-btn {\n    float: right;\n    margin-top: 20px; } }\n", ""]);
+exports.push([module.i, ".mini-photo {\n  width: 100px;\n  height: 100px; }\n\n.price {\n  color: grey;\n  margin-left: 5px; }\n\n.name {\n  font-weight: 800; }\n\n.available {\n  color: green; }\n\n.unavailable {\n  color: red; }\n\n@media (min-width: 961px) {\n  .name {\n    font-size: 24px; }\n  .show-product-button {\n    float: right;\n    margin: -4% 0 0 0; } }\n\n@media (min-width: 1024px) {\n  .price {\n    margin-left: 10px; } }\n\n.product-images li {\n  list-style: none;\n  display: inline-block;\n  margin-left: 15px; }\n  .product-images li img {\n    width: 100px;\n    height: 100px; }\n\n.main-product-photo {\n  width: 400px;\n  height: 400px; }\n\n.product-info {\n  float: right; }\n  .product-info hr {\n    border: 2px solid black; }\n  .product-info .title h2, .product-info .title span {\n    display: inline-block; }\n  .product-info .title span {\n    color: grey;\n    margin-left: 10px; }\n  .product-info .add-to-cart input {\n    width: 50px; }\n  .product-info .add-to-cart button {\n    margin-top: 20px;\n    margin-bottom: 20px; }\n\n.totalSum {\n  font-weight: 700;\n  font-size: 24px; }\n\n@media (min-width: 961px) {\n  .quantity {\n    float: right; }\n  .productSum {\n    float: right;\n    padding-top: 60px; }\n  .totalSum {\n    float: right;\n    height: 40px; }\n  .delete-product-button {\n    float: right;\n    margin: -4% 0 0 0; }\n  .order-btn {\n    float: right;\n    margin-top: 20px; } }\n\n.contact-elements {\n  font-size: 26px;\n  color: rgba(64, 36, 0, 0.85);\n  font-weight: bold; }\n\n.contact-form {\n  width: 400px; }\n", ""]);
 
 // exports
 
@@ -30404,6 +30409,138 @@ module.exports = warning;
 __webpack_require__(115);
 module.exports = __webpack_require__(114);
 
+
+/***/ }),
+/* 268 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Contact = function (_React$Component) {
+    _inherits(Contact, _React$Component);
+
+    function Contact() {
+        _classCallCheck(this, Contact);
+
+        var _this = _possibleConstructorReturn(this, (Contact.__proto__ || Object.getPrototypeOf(Contact)).call(this));
+
+        _this.state = {
+            email: 'elegant.shop@example.com'
+        };
+        return _this;
+    }
+
+    _createClass(Contact, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                    'h4',
+                    null,
+                    'Contact with us:'
+                ),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement(
+                    'address',
+                    null,
+                    _react2.default.createElement(
+                        'strong',
+                        { className: 'contact-elements' },
+                        'Address:'
+                    ),
+                    _react2.default.createElement('br', null),
+                    '70 Bowman St. ',
+                    _react2.default.createElement('br', null),
+                    'South Windsor, CT 06074'
+                ),
+                _react2.default.createElement(
+                    'address',
+                    null,
+                    _react2.default.createElement(
+                        'strong',
+                        { className: 'contact-elements' },
+                        'Phone number:'
+                    ),
+                    _react2.default.createElement('br', null),
+                    ' +1-202-555-0111'
+                ),
+                _react2.default.createElement(
+                    'address',
+                    null,
+                    _react2.default.createElement(
+                        'strong',
+                        { className: 'contact-elements' },
+                        'E-mail:'
+                    ),
+                    _react2.default.createElement('br', null),
+                    _react2.default.createElement(
+                        'a',
+                        { href: "mailto:" + this.state.email },
+                        this.state.email
+                    )
+                ),
+                _react2.default.createElement(
+                    'address',
+                    null,
+                    _react2.default.createElement(
+                        'strong',
+                        { className: 'contact-elements' },
+                        'Question?:'
+                    ),
+                    _react2.default.createElement('br', null),
+                    _react2.default.createElement(
+                        'form',
+                        null,
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'form-group' },
+                            _react2.default.createElement('textarea', { placeholder: 'Enter message', className: 'form-control contact-form ', rows: '3' }),
+                            _react2.default.createElement('br', null),
+                            _react2.default.createElement(
+                                'label',
+                                { htmlFor: 'exampleInputEmail1' },
+                                'Enter your e-mail address: '
+                            ),
+                            _react2.default.createElement('br', null),
+                            _react2.default.createElement('input', { type: 'email', className: 'form-control contact-form ', id: 'exampleInputEmail1', placeholder: 'email' }),
+                            _react2.default.createElement('br', null),
+                            _react2.default.createElement(
+                                'button',
+                                { type: 'submit', className: 'btn btn-warning pull-left' },
+                                'Send'
+                            )
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Contact;
+}(_react2.default.Component);
+
+exports.default = Contact;
 
 /***/ })
 /******/ ]);
