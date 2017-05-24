@@ -1,2 +1,2 @@
 # Shop
-Project of mini shop - done with ReactJS, Sass, Bootstrap.
+Project of mini shop - done with ReactJS, Sass, Bootstrap, RWD. 
